@@ -1,17 +1,382 @@
 ---
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
 
+const services = [
+  { icon: "✈️", title: "Air Freight", desc: "Express cargo to 3+ countries with door-to-door service.", color: "from-blue-500/10 to-blue-600/5 border-blue-500/20", accent: "text-blue-600", tag: "Express" },
+  { icon: "🚢", title: "Sea Freight", desc: "Cost-effective ocean shipping with expert customs handling.", color: "from-cyan-500/10 to-cyan-600/5 border-cyan-500/20", accent: "text-cyan-600", tag: "Economy" },
+  { icon: "🚛", title: "Road Freight", desc: "Full truckload & LTL domestic freight with GPS tracking.", color: "from-orange-500/10 to-orange-600/5 border-orange-500/20", accent: "text-orange-600", tag: "Domestic" },
+  { icon: "🏭", title: "Warehousing", desc: "Secure storage with real-time inventory and same-day dispatch.", color: "from-purple-500/10 to-purple-600/5 border-purple-500/20", accent: "text-purple-600", tag: "Storage" },
+  { icon: "📦", title: "Last-Mile Delivery", desc: "Fast delivery to your customers with live tracking & POD.", color: "from-green-500/10 to-green-600/5 border-green-500/20", accent: "text-green-600", tag: "Consumer" },
+  { icon: "📋", title: "Customs Clearance", desc: "Hassle-free import/export compliance and documentation.", color: "from-rose-500/10 to-rose-600/5 border-rose-500/20", accent: "text-rose-600", tag: "Compliance" },
+];
+
+const steps = [
+  { n: "01", title: "Book Online", desc: "Submit shipment details in minutes and get instant confirmation.", icon: "🖥️" },
+  { n: "02", title: "We Pick Up", desc: "Our team collects from your location at the scheduled time.", icon: "🚚" },
+  { n: "03", title: "We Handle It", desc: "Documentation, customs, and routing handled by our experts.", icon: "📋" },
+  { n: "04", title: "Delivered", desc: "Live updates all the way. Arrives on time, every time.", icon: "✅" },
+];
+
+const industries = [
+  { icon: "👗", name: "Apparel" },
+  { icon: "🛒", name: "E-commerce" },
+  { icon: "🏭", name: "Manufacturing" },
+  { icon: "💊", name: "Healthcare" },
+  { icon: "🚗", name: "Automotive" },
+  { icon: "🖥️", name: "Technology" },
+  { icon: "🌾", name: "Agriculture" },
+  { icon: "⚡", name: "Energy" },
+];
+
+const stats = [
+  { value: "120+", label: "Shipments" },
+  { value: "3", label: "Countries" },
+  { value: "100%", label: "On-Time" },
+  { value: "10", label: "Clients" },
+  { value: "1 yr", label: "In Business" },
+  { value: "24/7", label: "Support" },
+];
+
+const testimonials = [
+  {
+    name: "Rahul Ahmed",
+    title: "Owner, Ahmed Garments",
+    quote: "Tipu handled our first international shipment flawlessly. Transparent pricing and the team was always reachable. Highly recommend for any small business.",
+    rating: 5,
+    initials: "RA",
+    color: "bg-blue-600",
+  },
+  {
+    name: "Nasrin Akter",
+    title: "Manager, Akter Traders",
+    quote: "We switched to Tipu for our Dhaka deliveries and haven't looked back. 100% on time, great communication.",
+    rating: 5,
+    initials: "NA",
+    color: "bg-purple-600",
+  },
+  {
+    name: "Karim Mia",
+    title: "Director, KM Imports",
+    quote: "Their customs clearance support saved us so much stress. Professional team, honest pricing.",
+    rating: 5,
+    initials: "KM",
+    color: "bg-orange-600",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Tipu — Smart Logistics for a Connected World">
+  <Hero />
+
+  <!-- Quick Actions — 2x2 on mobile, 4 cols on desktop -->
+  <section class="bg-white pt-6 pb-4 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {[
+          { icon: "💬", title: "Get a Quote", desc: "Fast pricing", href: "/contact", bg: "bg-blue-50 border-blue-100 active:bg-blue-100" },
+          { icon: "📍", title: "Track Cargo", desc: "Live tracking", href: "/track", bg: "bg-green-50 border-green-100 active:bg-green-100" },
+          { icon: "📞", title: "Call Us", desc: "01959395939", href: "tel:+8801959395939", bg: "bg-purple-50 border-purple-100 active:bg-purple-100" },
+          { icon: "📄", title: "Our Services", desc: "See all options", href: "/services", bg: "bg-orange-50 border-orange-100 active:bg-orange-100" },
+        ].map(({ icon, title, desc, href, bg }) => (
+          <a href={href} class={`flex flex-col items-center text-center gap-1.5 p-4 rounded-2xl border ${bg} transition-all active:scale-95`}>
+            <span class="text-2xl">{icon}</span>
+            <p class="font-bold text-sm text-gray-900">{title}</p>
+            <p class="text-xs text-gray-400 leading-tight">{desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services — horizontal scroll on mobile, grid on desktop -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="px-4 text-center mb-8 sm:mb-12">
+        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Our Services</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">Everything Your Cargo Needs</h2>
+        <p class="text-gray-500 text-sm sm:text-base max-w-lg mx-auto">From a single parcel to full supply chains — we move it.</p>
+      </div>
+
+      <!-- Mobile: horizontal scroll -->
+      <div class="flex lg:hidden gap-4 px-4 overflow-x-auto pb-4 snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+        {services.map(({ icon, title, desc, color, accent, tag }) => (
+          <a href="/services" class={`flex-none snap-start w-[260px] bg-gradient-to-br ${color} border rounded-2xl p-5 active:scale-[0.97] transition-transform`}>
+            <div class="flex items-start justify-between mb-3">
+              <span class="text-4xl">{icon}</span>
+              <span class={`text-xs font-bold ${accent} bg-white px-2 py-1 rounded-full border`}>{tag}</span>
+            </div>
+            <h3 class="font-bold text-base text-gray-900 mb-1.5">{title}</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">{desc}</p>
+          </a>
+        ))}
+      </div>
+
+      <!-- Desktop: grid -->
+      <div class="hidden lg:grid grid-cols-3 gap-5 px-4">
+        {services.map(({ icon, title, desc, color, accent, tag }) => (
+          <a href="/services" class={`group bg-gradient-to-br ${color} border rounded-2xl p-6 hover:-translate-y-1 hover:shadow-lg transition-all`}>
+            <div class="flex items-start justify-between mb-4">
+              <span class="text-4xl">{icon}</span>
+              <span class={`text-xs font-bold ${accent} bg-white px-2.5 py-1 rounded-full border`}>{tag}</span>
+            </div>
+            <h3 class="font-bold text-lg text-gray-900 mb-2">{title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+            <span class={`text-sm font-semibold ${accent} flex items-center gap-1 group-hover:gap-2 transition-all`}>
+              Learn more →
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Scroll hint on mobile -->
+      <p class="lg:hidden text-center text-xs text-gray-400 mt-1">← Swipe to see all services →</p>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="bg-gradient-to-r from-blue-700 to-blue-900 py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 text-center">
+        {stats.map(({ value, label }) => (
+          <div>
+            <p class="text-2xl sm:text-4xl font-black text-white mb-0.5">{value}</p>
+            <p class="text-blue-200 text-[10px] sm:text-xs uppercase tracking-wide">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works — vertical timeline on mobile -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10 sm:mb-14">
+        <span class="inline-block bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">How It Works</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">Ship in 4 Simple Steps</h2>
+        <p class="text-gray-500 text-sm sm:text-base max-w-md mx-auto">We handle the complexity — you focus on your business.</p>
+      </div>
+
+      <!-- Mobile: vertical timeline -->
+      <div class="lg:hidden space-y-0">
+        {steps.map(({ n, title, desc, icon }, i) => (
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-xl shrink-0 shadow-md shadow-blue-200">{icon}</div>
+              {i < steps.length - 1 && <div class="w-0.5 flex-1 bg-gradient-to-b from-blue-300 to-blue-100 my-1 min-h-[2rem]"></div>}
+            </div>
+            <div class="pb-8">
+              <span class="text-blue-600 font-black text-xs uppercase tracking-widest">{n}</span>
+              <h3 class="font-bold text-gray-900 text-base mb-1">{title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop: horizontal -->
+      <div class="hidden lg:grid grid-cols-4 gap-6 relative">
+        <div class="absolute top-10 left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] h-px border-t-2 border-dashed border-gray-200"></div>
+        {steps.map(({ n, title, desc, icon }) => (
+          <div class="relative z-10 flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 text-white flex items-center justify-center text-3xl mb-4 shadow-lg shadow-blue-200">{icon}</div>
+            <span class="text-blue-600 font-black text-xs uppercase tracking-widest mb-1">{n}</span>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">{title}</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center mt-8 sm:mt-12">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-7 py-4 rounded-xl active:scale-95 transition-transform text-sm shadow-sm shadow-blue-200">
+          Start Shipping Today →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries — horizontal scroll on mobile -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <div class="px-4 text-center mb-8">
+        <span class="inline-block bg-purple-100 text-purple-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Industries</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">We Serve Every Sector</h2>
+        <p class="text-gray-500 text-sm sm:text-base">We understand your industry's specific needs.</p>
+      </div>
+
+      <!-- Mobile: horizontal scroll -->
+      <div class="flex lg:hidden gap-3 px-4 overflow-x-auto pb-4" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+        {industries.map(({ icon, name }) => (
+          <a href="/services" class="flex-none flex flex-col items-center gap-2 p-4 bg-white rounded-2xl border border-gray-100 active:scale-95 transition-transform min-w-[80px] text-center shadow-sm">
+            <span class="text-3xl">{icon}</span>
+            <span class="text-xs font-semibold text-gray-600 leading-tight">{name}</span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Desktop: grid -->
+      <div class="hidden lg:grid grid-cols-8 gap-4 px-4">
+        {industries.map(({ icon, name }) => (
+          <a href="/services" class="flex flex-col items-center gap-2 p-4 bg-white rounded-xl border border-gray-100 hover:border-blue-200 hover:shadow-md hover:-translate-y-1 transition-all text-center">
+            <span class="text-3xl">{icon}</span>
+            <span class="text-xs font-medium text-gray-600">{name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-[#040d1f] text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(14,165,233,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.2) 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <div class="relative max-w-7xl mx-auto px-4">
+
+      <div class="text-center mb-10 lg:text-left lg:mb-0 lg:hidden">
+        <span class="inline-block bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Why Tipu</span>
+        <h2 class="font-display text-3xl font-black mb-2">Built for Modern Business</h2>
+        <p class="text-gray-400 text-sm leading-relaxed">Passionate, transparent, and always available — that's our promise.</p>
+      </div>
+
+      <!-- Mobile: feature cards grid -->
+      <div class="grid grid-cols-2 gap-3 lg:hidden mb-8">
+        {[
+          { icon: "⚡", title: "Real-Time Tracking", desc: "Live GPS, 24/7" },
+          { icon: "🤝", title: "Dedicated Support", desc: "One contact, always" },
+          { icon: "🔒", title: "No Hidden Fees", desc: "Transparent pricing" },
+          { icon: "📦", title: "100% On-Time", desc: "Every delivery so far" },
+        ].map(({ icon, title, desc }) => (
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+            <span class="text-2xl block mb-2">{icon}</span>
+            <p class="font-bold text-sm text-white">{title}</p>
+            <p class="text-gray-400 text-xs mt-0.5">{desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop: two-column -->
+      <div class="hidden lg:grid grid-cols-2 gap-14 items-center">
+        <div>
+          <span class="inline-block bg-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">Why Tipu</span>
+          <h2 class="font-display text-4xl font-black mb-4 leading-tight">
+            Logistics Built for<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Modern Business</span>
+          </h2>
+          <p class="text-gray-400 mb-8 leading-relaxed">
+            We are a new but passionate logistics company combining modern technology with dedicated service.
+          </p>
+          <ul class="space-y-4 mb-8">
+            {[
+              { icon: "⚡", title: "Real-Time Tracking", desc: "Live GPS on every shipment, 24/7." },
+              { icon: "🤝", title: "Dedicated Support", desc: "One point of contact who knows your business." },
+              { icon: "🔒", title: "No Hidden Fees", desc: "Transparent pricing — always." },
+              { icon: "📊", title: "Regular Updates", desc: "You're informed at every step of the journey." },
+            ].map(({ icon, title, desc }) => (
+              <li class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-lg shrink-0">{icon}</div>
+                <div>
+                  <p class="font-semibold text-white text-sm">{title}</p>
+                  <p class="text-gray-400 text-sm">{desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          {[
+            { label: "Avg. Delivery Time", value: "3 days", sub: "Express shipments", icon: "⏱️" },
+            { label: "Shipments Done", value: "120+", sub: "Since launch", icon: "📦" },
+            { label: "On-Time Rate", value: "100%", sub: "Every delivery", icon: "📡" },
+            { label: "Happy Clients", value: "10", sub: "And growing", icon: "❤️" },
+          ].map(({ label, value, sub, icon }) => (
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+              <span class="text-3xl block mb-3">{icon}</span>
+              <p class="text-2xl font-black text-white mb-0.5">{value}</p>
+              <p class="text-blue-300 text-xs font-semibold mb-1">{label}</p>
+              <p class="text-gray-500 text-xs">{sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Testimonials — horizontal scroll on mobile -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="px-4 text-center mb-8">
+        <span class="inline-block bg-green-100 text-green-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Testimonials</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">What Our Clients Say</h2>
+        <p class="text-gray-500 text-sm">Real feedback from real customers.</p>
+      </div>
+
+      <!-- Mobile: horizontal scroll -->
+      <div class="flex lg:hidden gap-4 px-4 overflow-x-auto pb-4 snap-x snap-mandatory" style="-webkit-overflow-scrolling: touch; scrollbar-width: none;">
+        {testimonials.map(({ name, title, quote, rating, initials, color }) => (
+          <div class="flex-none snap-start w-[300px] bg-gray-50 border border-gray-100 rounded-2xl p-5">
+            <div class="flex gap-0.5 mb-3">
+              {Array(rating).fill(0).map(() => (
+                <svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-4">"{quote}"</p>
+            <div class="flex items-center gap-3">
+              <div class={`w-9 h-9 rounded-full ${color} text-white flex items-center justify-center font-bold text-xs shrink-0`}>{initials}</div>
+              <div>
+                <p class="font-bold text-sm text-gray-900">{name}</p>
+                <p class="text-xs text-gray-500">{title}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop: grid -->
+      <div class="hidden lg:grid grid-cols-3 gap-6 px-4">
+        {testimonials.map(({ name, title, quote, rating, initials, color }) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-2xl p-7 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="flex gap-0.5 mb-4">
+              {Array(rating).fill(0).map(() => (
+                <svg class="w-4 h-4 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed mb-6">"{quote}"</p>
+            <div class="flex items-center gap-3">
+              <div class={`w-10 h-10 rounded-full ${color} text-white flex items-center justify-center font-bold text-sm shrink-0`}>{initials}</div>
+              <div>
+                <p class="font-semibold text-sm text-gray-900">{name}</p>
+                <p class="text-xs text-gray-500">{title}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-14 sm:py-20 bg-gradient-to-br from-blue-600 to-blue-900 relative overflow-hidden mb-16 lg:mb-0">
+    <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 28px 28px;"></div>
+    <div class="relative max-w-2xl mx-auto px-4 text-center">
+      <h2 class="font-display text-3xl sm:text-4xl font-black text-white mb-3">
+        Ready to Ship?
+      </h2>
+      <p class="text-blue-100 text-sm sm:text-base mb-8 max-w-md mx-auto">
+        Get a customized quote in under 24 hours. No commitment, no hidden fees.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/contact" class="flex items-center justify-center gap-2 bg-white text-blue-700 font-bold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform shadow-xl text-sm">
+          Get a Free Quote →
+        </a>
+        <a href="tel:+8801959395939" class="flex items-center justify-center gap-2 border-2 border-white/40 text-white font-semibold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform text-sm">
+          📞 01959395939
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* Hide scrollbar on swipe rows */
+  section div[style*="scrollbar-width: none"]::-webkit-scrollbar { display: none; }
+</style>

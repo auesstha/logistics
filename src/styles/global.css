@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/plus-jakarta-sans';
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans Variable', sans-serif;
+  --font-display: 'Fraunces Variable', serif;
+  --color-navy-950: #040d1f;
+  --color-navy-900: #0a1628;
+}
+
+html {
+  scroll-behavior: smooth;
+}

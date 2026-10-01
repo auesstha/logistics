@@ -1,0 +1,433 @@
+---
+export const prerender = true;
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Services — Tipu Logistics" description="Explore Tipu's full range of logistics services across Bangladesh and beyond.">
+
+  <!-- Hero -->
+  <section class="relative bg-[#040d1f] overflow-hidden">
+    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(14,165,233,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.15) 1px, transparent 1px); background-size: 50px 50px;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-64 bg-blue-600/25 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
+      <span class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        What We Offer
+      </span>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+        Complete Logistics<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Solutions</span>
+      </h1>
+      <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-8">
+        From a single parcel to your entire supply chain — we handle it all, across Bangladesh and beyond.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform shadow-lg shadow-blue-900/40">
+          Get a Free Quote →
+        </a>
+        <a href="#services-list" class="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform">
+          Browse Services ↓
+        </a>
+      </div>
+    </div>
+    <svg viewBox="0 0 1440 40" fill="none" class="w-full block"><path d="M0 40L720 10L1440 40V40H0Z" fill="white"/></svg>
+  </section>
+
+  <!-- Sticky category tabs -->
+  <div class="sticky top-14 sm:top-16 z-30 bg-white border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex overflow-x-auto gap-1 py-2" style="scrollbar-width:none; -webkit-overflow-scrolling:touch;">
+        <button data-cat="all"        class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white">🗂️ All Services</button>
+        <button data-cat="freight"    class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">🚢 Freight</button>
+        <button data-cat="logistics"  class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">🏭 Logistics</button>
+        <button data-cat="valueadded" class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">⚙️ Value-Added</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services-list" class="bg-white py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto px-4 space-y-10 sm:space-y-14">
+
+      <!-- ── FREIGHT ── -->
+      <div class="cat-section" data-section="freight">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-1 h-10 bg-gradient-to-b from-blue-600 to-cyan-400 rounded-full"></div>
+          <div>
+            <p class="text-xs font-bold text-blue-600 uppercase tracking-widest">Category 01</p>
+            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Freight Services</h2>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+          <!-- Air Freight -->
+          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
+            <!-- Image zone: replace this div with <img src="/images/air-freight.jpg" ...> -->
+            <div class="h-40 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
+              <span class="text-6xl">✈️</span>
+              <span class="absolute top-3 right-3 bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">Express</span>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-r-full"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-display font-black text-xl text-gray-900">Air Freight</h3>
+              <p class="text-xs font-bold text-blue-600 uppercase tracking-wide mt-0.5 mb-3">Fast. Reliable. Global.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">When time is critical, our air freight solutions get your cargo to its destination with speed and precision — door to door.</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
+                {["Express & standard cargo","Door-to-door delivery","Real-time tracking","Customs included","Temp-sensitive handling","Dangerous goods certified"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                      <svg class="w-2.5 h-2.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition-all">
+                Get Air Freight Quote →
+              </a>
+            </div>
+          </div>
+
+          <!-- Sea Freight -->
+          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-40 bg-gradient-to-br from-cyan-50 to-cyan-100 flex items-center justify-center relative">
+              <span class="text-6xl">🚢</span>
+              <span class="absolute top-3 right-3 bg-cyan-100 text-cyan-700 text-xs font-bold px-2.5 py-1 rounded-full">Economy</span>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500 rounded-r-full"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-display font-black text-xl text-gray-900">Sea Freight</h3>
+              <p class="text-xs font-bold text-cyan-600 uppercase tracking-wide mt-0.5 mb-3">Cost-Effective. Scalable.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">Move large volumes economically with our FCL and LCL ocean freight services. Expert port handling and documentation included.</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
+                {["Full Container (FCL)","Less Container (LCL)","Port-to-port","Door-to-door","Import/export docs","Reefer containers"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <span class="w-4 h-4 rounded-full bg-cyan-100 flex items-center justify-center shrink-0">
+                      <svg class="w-2.5 h-2.5 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-cyan-50 text-cyan-700 hover:bg-cyan-100 active:scale-95 transition-all">
+                Get Sea Freight Quote →
+              </a>
+            </div>
+          </div>
+
+          <!-- Road Freight -->
+          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
+            <div class="h-40 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center relative">
+              <span class="text-6xl">🚛</span>
+              <span class="absolute top-3 right-3 bg-orange-100 text-orange-700 text-xs font-bold px-2.5 py-1 rounded-full">Domestic</span>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 rounded-r-full"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-display font-black text-xl text-gray-900">Road Freight</h3>
+              <p class="text-xs font-bold text-orange-600 uppercase tracking-wide mt-0.5 mb-3">Domestic. Dependable. On-Time.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">Full truckload and LTL options across Bangladesh. GPS-tracked vehicles, digital proof of delivery every time.</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
+                {["Full Truckload (FTL)","LTL available","GPS-tracked fleet","Same-day pickup","Digital POD","Inter-district"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <span class="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center shrink-0">
+                      <svg class="w-2.5 h-2.5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-orange-50 text-orange-700 hover:bg-orange-100 active:scale-95 transition-all">
+                Get Road Freight Quote →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video / Why Us banner -->
+      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-blue-700 to-blue-900 p-7 sm:p-10 text-white">
+        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle, white 1px, transparent 1px);background-size:24px 24px;"></div>
+        <div class="relative flex flex-col lg:flex-row items-center gap-6">
+          <!-- Video zone: replace this div with a YouTube embed or <video> tag -->
+          <div class="w-full lg:w-80 h-44 rounded-2xl bg-white/10 border-2 border-white/20 flex flex-col items-center justify-center gap-3 shrink-0">
+            <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="text-white/60 text-xs text-center px-4">Your company video goes here</span>
+          </div>
+          <div>
+            <span class="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Why Choose Us</span>
+            <h3 class="font-display text-2xl sm:text-3xl font-black mb-3">See How We Work</h3>
+            <p class="text-blue-100 text-sm leading-relaxed mb-5 max-w-md">We're not just a logistics company — we're your partner. Every cargo is handled with care from pickup to delivery.</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="/contact" class="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-5 py-3 rounded-xl text-sm active:scale-95 transition-transform">Get Started →</a>
+              <a href="/about" class="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-5 py-3 rounded-xl text-sm active:scale-95 transition-transform">About Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── LOGISTICS ── -->
+      <div class="cat-section" data-section="logistics">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-1 h-10 bg-gradient-to-b from-purple-600 to-green-400 rounded-full"></div>
+          <div>
+            <p class="text-xs font-bold text-purple-600 uppercase tracking-widest">Category 02</p>
+            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Logistics & Delivery</h2>
+          </div>
+        </div>
+
+        <!-- Warehousing — wide card with image zone on left -->
+        <div data-category="logistics" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm mb-5">
+          <div class="grid lg:grid-cols-2">
+            <!-- Image zone: replace with <img src="/images/warehouse.jpg" class="w-full h-full object-cover"> -->
+            <div class="h-56 sm:h-64 lg:h-auto bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center relative">
+              <span class="text-7xl">🏭</span>
+              <span class="absolute top-4 left-4 bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Storage</span>
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-purple-500 lg:hidden"></div>
+              <div class="absolute top-0 bottom-0 right-0 w-1 bg-purple-500 hidden lg:block"></div>
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col justify-center">
+              <h3 class="font-display font-black text-2xl text-gray-900">Warehousing</h3>
+              <p class="text-xs font-bold text-purple-600 uppercase tracking-wide mt-0.5 mb-3">Secure. Smart. Same-Day Ready.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-5">Our Dhaka warehousing provides secure, organized storage with real-time inventory management. Scale up or down — no long-term contracts required.</p>
+              <ul class="grid grid-cols-2 gap-2 mb-6">
+                {["Climate-controlled","Real-time inventory","Same-day dispatch","CCTV & 24/7 security","Flexible plans","Pick & pack"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <svg class="w-3.5 h-3.5 text-purple-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm active:scale-95 transition-all">
+                Enquire About Warehousing →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last-Mile — image on right -->
+        <div data-category="logistics" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+          <div class="grid lg:grid-cols-2">
+            <div class="p-6 sm:p-8 flex flex-col justify-center order-2 lg:order-1">
+              <h3 class="font-display font-black text-2xl text-gray-900">Last-Mile Delivery</h3>
+              <p class="text-xs font-bold text-green-600 uppercase tracking-wide mt-0.5 mb-3">Fast. Tracked. Delivered to Door.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-5">The final leg matters most. Our last-mile network ensures customers receive orders with live SMS updates and digital proof of delivery every time.</p>
+              <ul class="grid grid-cols-2 gap-2 mb-6">
+                {["Doorstep delivery","Live SMS updates","Digital POD","Re-attempt on fail","E-commerce ready","Cash on delivery"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <svg class="w-3.5 h-3.5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm active:scale-95 transition-all">
+                Get Delivery Quote →
+              </a>
+            </div>
+            <!-- Image zone: replace with <img src="/images/last-mile.jpg" class="w-full h-full object-cover"> -->
+            <div class="h-56 sm:h-64 lg:h-auto bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center relative order-1 lg:order-2">
+              <span class="text-7xl">📦</span>
+              <span class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Consumer</span>
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-green-500 lg:hidden"></div>
+              <div class="absolute top-0 bottom-0 left-0 w-1 bg-green-500 hidden lg:block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VALUE ADDED ── -->
+      <div class="cat-section" data-section="valueadded">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-1 h-10 bg-gradient-to-b from-rose-600 to-amber-400 rounded-full"></div>
+          <div>
+            <p class="text-xs font-bold text-rose-600 uppercase tracking-widest">Category 03</p>
+            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Value-Added Services</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+          <!-- Customs Clearance -->
+          <div data-category="valueadded" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
+            <div class="h-40 bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center relative">
+              <span class="text-6xl">📋</span>
+              <span class="absolute top-3 right-3 bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">Compliance</span>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-500 rounded-r-full"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-display font-black text-xl text-gray-900">Customs Clearance</h3>
+              <p class="text-xs font-bold text-rose-600 uppercase tracking-wide mt-0.5 mb-3">Compliant. Fast. Stress-Free.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">Navigate complex import/export regulations with our experienced customs team. We handle all documentation and authority liaison.</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
+                {["Import & export clearance","HS code classification","Document preparation","Authority liaison","Duty & tax advisory","Compliance consulting"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <span class="w-4 h-4 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
+                      <svg class="w-2.5 h-2.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-rose-50 text-rose-700 hover:bg-rose-100 active:scale-95 transition-all">
+                Enquire Now →
+              </a>
+            </div>
+          </div>
+
+          <!-- Supply Chain -->
+          <div data-category="valueadded" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
+            <div class="h-40 bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center relative">
+              <span class="text-6xl">🔗</span>
+              <span class="absolute top-3 right-3 bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Advisory</span>
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-r-full"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <h3 class="font-display font-black text-xl text-gray-900">Supply Chain Management</h3>
+              <p class="text-xs font-bold text-amber-600 uppercase tracking-wide mt-0.5 mb-3">Visibility. Control. Optimised.</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">Full end-to-end visibility over your supply chain. From vendor coordination to final delivery — every handover point monitored.</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
+                {["End-to-end coordination","Vendor management","Route optimization","Cost reduction","Performance reports","Dedicated manager"].map(f => (
+                  <li class="flex items-center gap-2 text-xs text-gray-700">
+                    <span class="w-4 h-4 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                      <svg class="w-2.5 h-2.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-amber-50 text-amber-700 hover:bg-amber-100 active:scale-95 transition-all">
+                Learn More →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process steps -->
+  <section class="py-12 sm:py-16 bg-gray-50 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Our Process</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">From Booking to Delivery</h2>
+        <p class="text-gray-500 text-sm max-w-md mx-auto">Simple, transparent, and fully tracked at every step.</p>
+      </div>
+      <!-- Mobile: vertical timeline -->
+      <div class="lg:hidden space-y-0 max-w-sm mx-auto">
+        {[
+          { n:"01", icon:"🖥️", title:"Book Online", desc:"Submit details and get instant confirmation.", color:"bg-blue-100 text-blue-600" },
+          { n:"02", icon:"🚚", title:"We Pick Up", desc:"Collected from your location on schedule.", color:"bg-cyan-100 text-cyan-600" },
+          { n:"03", icon:"📋", title:"We Handle It", desc:"Docs, customs, routing — all sorted.", color:"bg-orange-100 text-orange-600" },
+          { n:"04", icon:"✅", title:"Delivered", desc:"Live updates. Proof of delivery every time.", color:"bg-green-100 text-green-600" },
+        ].map(({ n, icon, title, desc, color }, i, arr) => (
+          <div class="flex gap-4">
+            <div class="flex flex-col items-center">
+              <div class={`w-12 h-12 rounded-2xl ${color} flex items-center justify-center text-xl font-bold shrink-0`}>{icon}</div>
+              {i < arr.length - 1 && <div class="w-0.5 flex-1 bg-gray-200 my-1 min-h-8"></div>}
+            </div>
+            <div class="pb-7">
+              <span class="text-blue-600 font-black text-xs uppercase tracking-widest">{n}</span>
+              <h3 class="font-bold text-gray-900 text-base mt-0.5 mb-1">{title}</h3>
+              <p class="text-gray-500 text-sm">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <!-- Desktop: horizontal -->
+      <div class="hidden lg:grid grid-cols-4 gap-5 relative">
+        <div class="absolute top-10 left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] border-t-2 border-dashed border-gray-200"></div>
+        {[
+          { n:"01", icon:"🖥️", title:"Book Online", desc:"Submit details and get instant confirmation.", bg:"bg-blue-50 border-blue-200" },
+          { n:"02", icon:"🚚", title:"We Pick Up", desc:"Collected from your location on schedule.", bg:"bg-cyan-50 border-cyan-200" },
+          { n:"03", icon:"📋", title:"We Handle It", desc:"Docs, customs, routing — all sorted.", bg:"bg-orange-50 border-orange-200" },
+          { n:"04", icon:"✅", title:"Delivered", desc:"Live updates. Proof of delivery every time.", bg:"bg-green-50 border-green-200" },
+        ].map(({ n, icon, title, desc, bg }) => (
+          <div class={`relative z-10 border-2 ${bg} rounded-2xl p-5 text-center`}>
+            <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-3xl mx-auto mb-3">{icon}</div>
+            <span class="text-blue-600 font-black text-xs uppercase tracking-widest">{n}</span>
+            <h3 class="font-bold text-gray-900 text-base mt-1 mb-1.5">{title}</h3>
+            <p class="text-gray-500 text-xs leading-relaxed">{desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform shadow-sm">
+          Start Shipping Today →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust stats -->
+  <section class="py-10 sm:py-14 bg-gradient-to-r from-blue-700 to-blue-900">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        {[
+          { icon:"💯", stat:"100%", label:"On-Time Rate" },
+          { icon:"📦", stat:"120+", label:"Shipments" },
+          { icon:"🌍", stat:"3",    label:"Countries" },
+          { icon:"🤝", stat:"10",   label:"Happy Clients" },
+        ].map(({ icon, stat, label }) => (
+          <div>
+            <div class="text-3xl mb-1">{icon}</div>
+            <p class="text-3xl sm:text-4xl font-black text-white">{stat}</p>
+            <p class="text-blue-200 text-xs uppercase tracking-wide mt-0.5">{label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-14 sm:py-20 bg-white mb-16 lg:mb-0">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">Get Started</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-3">Not Sure Which Service?</h2>
+      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-md mx-auto">
+        Talk to our team — free of charge. We'll recommend the best solution for your shipment.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/contact" class="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform shadow-lg shadow-blue-200 text-sm">
+          Talk to an Expert →
+        </a>
+        <a href="tel:+8801959395939" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 font-semibold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform text-sm hover:border-blue-300 hover:text-blue-600">
+          📞 01959395939
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const btns = document.querySelectorAll('.cat-btn');
+  const sections = document.querySelectorAll('.cat-section');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = (btn as HTMLElement).getAttribute('data-cat');
+
+      btns.forEach(b => {
+        b.classList.remove('bg-blue-600','text-white');
+        b.classList.add('text-gray-600','hover:bg-gray-50');
+      });
+      btn.classList.add('bg-blue-600','text-white');
+      btn.classList.remove('text-gray-600','hover:bg-gray-50');
+
+      if (cat === 'all') {
+        sections.forEach(s => (s as HTMLElement).style.display = '');
+      } else {
+        sections.forEach(s => {
+          const el = s as HTMLElement;
+          el.style.display = el.getAttribute('data-section') === cat ? '' : 'none';
+        });
+      }
+
+      document.getElementById('services-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
