@@ -1,400 +1,583 @@
 ---
 export const prerender = true;
 import Layout from "../layouts/Layout.astro";
+
+const freight = [
+  {
+    icon: "✈️",
+    title: "Air Freight",
+    sub: "Fast. Reliable. Global.",
+    desc: "Time-critical shipments handled with precision — door-to-door air cargo with real-time tracking at every step.",
+    tag: "Express",
+    accentBg: "bg-sky-600",
+    accentLight: "bg-sky-50",
+    accentText: "text-sky-600",
+    accentBorder: "border-sky-200",
+    tagBg: "bg-sky-100 text-sky-700",
+    btnCls: "bg-sky-600 hover:bg-sky-500",
+    headerFrom: "from-sky-400", headerTo: "to-blue-700",
+    checkCls: "text-sky-600 bg-sky-100",
+    features: ["Express & standard cargo","Door-to-door delivery","Real-time tracking","Customs included","Temp-sensitive handling","Dangerous goods"],
+  },
+  {
+    icon: "🚢",
+    title: "Sea Freight",
+    sub: "Cost-Effective. Scalable.",
+    desc: "Move large volumes economically with FCL & LCL ocean freight — expert port handling and documentation included.",
+    tag: "Economy",
+    accentBg: "bg-teal-600",
+    accentLight: "bg-teal-50",
+    accentText: "text-teal-600",
+    accentBorder: "border-teal-200",
+    tagBg: "bg-teal-100 text-teal-700",
+    btnCls: "bg-teal-600 hover:bg-teal-500",
+    headerFrom: "from-cyan-400", headerTo: "to-teal-700",
+    checkCls: "text-teal-600 bg-teal-100",
+    features: ["Full Container (FCL)","Less Container (LCL)","Port-to-port","Door-to-door","Import/export docs","Reefer containers"],
+  },
+  {
+    icon: "🚛",
+    title: "Road Freight",
+    sub: "Domestic. Dependable. On-Time.",
+    desc: "FTL and LTL options across Bangladesh — GPS-tracked fleet with digital proof of delivery every time.",
+    tag: "Domestic",
+    accentBg: "bg-orange-600",
+    accentLight: "bg-orange-50",
+    accentText: "text-orange-600",
+    accentBorder: "border-orange-200",
+    tagBg: "bg-orange-100 text-orange-700",
+    btnCls: "bg-orange-500 hover:bg-orange-400",
+    headerFrom: "from-orange-400", headerTo: "to-red-600",
+    checkCls: "text-orange-600 bg-orange-100",
+    features: ["Full Truckload (FTL)","LTL available","GPS-tracked fleet","Same-day pickup","Digital POD","Inter-district"],
+  },
+];
+
+const logistics = [
+  {
+    icon: "🏭",
+    title: "Warehousing",
+    sub: "Secure. Smart. Same-Day Ready.",
+    desc: "Dhaka-based storage with real-time inventory management. Scale up or down — no long-term contracts required.",
+    tag: "Storage",
+    accentBg: "bg-violet-600",
+    accentLight: "bg-violet-50",
+    accentText: "text-violet-600",
+    accentBorder: "border-violet-200",
+    tagBg: "bg-violet-100 text-violet-700",
+    btnCls: "bg-violet-600 hover:bg-violet-500",
+    headerFrom: "from-violet-500", headerTo: "to-purple-700",
+    checkCls: "text-violet-600 bg-violet-100",
+    features: ["Climate-controlled","Real-time inventory","Same-day dispatch","CCTV & security","Flexible plans","Pick & pack"],
+  },
+  {
+    icon: "📦",
+    title: "Last-Mile Delivery",
+    sub: "Fast. Tracked. To the Door.",
+    desc: "Live SMS updates and digital proof of delivery on every order — your customers always stay informed.",
+    tag: "Consumer",
+    accentBg: "bg-emerald-600",
+    accentLight: "bg-emerald-50",
+    accentText: "text-emerald-600",
+    accentBorder: "border-emerald-200",
+    tagBg: "bg-emerald-100 text-emerald-700",
+    btnCls: "bg-emerald-600 hover:bg-emerald-500",
+    headerFrom: "from-emerald-400", headerTo: "to-green-700",
+    checkCls: "text-emerald-600 bg-emerald-100",
+    features: ["Doorstep delivery","Live SMS updates","Digital POD","Re-attempt on fail","E-commerce ready","Cash on delivery"],
+  },
+];
+
+const valueAdded = [
+  {
+    icon: "📋",
+    title: "Customs Clearance",
+    sub: "Compliant. Fast. Stress-Free.",
+    desc: "We handle all documentation, HS classification, and authority liaison so your imports and exports move without friction.",
+    tag: "Compliance",
+    accentBg: "bg-rose-600",
+    accentLight: "bg-rose-50",
+    accentText: "text-rose-600",
+    accentBorder: "border-rose-200",
+    tagBg: "bg-rose-100 text-rose-700",
+    btnCls: "bg-rose-600 hover:bg-rose-500",
+    headerFrom: "from-rose-500", headerTo: "to-red-700",
+    checkCls: "text-rose-600 bg-rose-100",
+    features: ["Import & export clearance","HS code classification","Document preparation","Authority liaison","Duty & tax advisory","Compliance consulting"],
+  },
+  {
+    icon: "🔗",
+    title: "Supply Chain",
+    sub: "Visibility. Control. Optimised.",
+    desc: "End-to-end supply chain management — from vendor coordination to final delivery, every handover point monitored.",
+    tag: "Advisory",
+    accentBg: "bg-amber-500",
+    accentLight: "bg-amber-50",
+    accentText: "text-amber-600",
+    accentBorder: "border-amber-200",
+    tagBg: "bg-amber-100 text-amber-700",
+    btnCls: "bg-amber-500 hover:bg-amber-400",
+    headerFrom: "from-amber-400", headerTo: "to-orange-600",
+    checkCls: "text-amber-600 bg-amber-100",
+    features: ["End-to-end coordination","Vendor management","Route optimization","Cost reduction","Performance reports","Dedicated manager"],
+  },
+];
 ---
 
-<Layout title="Services — Tipu Logistics" description="Explore Tipu's full range of logistics services across Bangladesh and beyond.">
+<Layout title="Services — Tipu Logistics" description="Complete logistics solutions — air, sea, road freight, warehousing, last-mile delivery and customs clearance across Bangladesh.">
 
-  <!-- Hero -->
+  <!-- ═══ HERO ═══ -->
   <section class="relative bg-[#040d1f] overflow-hidden">
-    <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(14,165,233,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.15) 1px, transparent 1px); background-size: 50px 50px;"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-64 bg-blue-600/25 rounded-full blur-[100px] pointer-events-none"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-14 sm:py-20 text-center">
-      <span class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+    <div class="absolute inset-0 opacity-[0.12]" style="background-image:linear-gradient(rgba(14,165,233,0.5) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.5) 1px,transparent 1px);background-size:40px 40px;"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/25 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="relative max-w-4xl mx-auto px-4 pt-14 pb-12 sm:pt-20 sm:pb-16 text-center">
+      <div class="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
         <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
         What We Offer
-      </span>
-      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+      </div>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.06] mb-4">
         Complete Logistics<br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Solutions</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-400">Solutions</span>
       </h1>
-      <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto mb-8">
-        From a single parcel to your entire supply chain — we handle it all, across Bangladesh and beyond.
+      <p class="text-gray-400 text-base sm:text-lg max-w-lg mx-auto mb-8 leading-relaxed">
+        From a single parcel to your entire supply chain — handled with care, across Bangladesh and beyond.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform shadow-lg shadow-blue-900/40">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold px-7 py-4 rounded-2xl text-sm shadow-xl shadow-blue-900/50 active:scale-95 transition-transform">
           Get a Free Quote →
         </a>
-        <a href="#services-list" class="inline-flex items-center justify-center gap-2 border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform">
+        <a href="#services-list" class="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-semibold px-7 py-4 rounded-2xl text-sm active:scale-95 transition-transform backdrop-blur-sm">
           Browse Services ↓
         </a>
       </div>
     </div>
-    <svg viewBox="0 0 1440 40" fill="none" class="w-full block"><path d="M0 40L720 10L1440 40V40H0Z" fill="white"/></svg>
+    <!-- Service chips row -->
+    <div class="relative flex flex-wrap justify-center gap-2 px-4 pb-12">
+      {["✈️ Air Freight","🚢 Sea Freight","🚛 Road Freight","🏭 Warehousing","📦 Last-Mile","📋 Customs","🔗 Supply Chain"].map(s => (
+        <span class="bg-white/8 border border-white/15 text-gray-300 text-xs font-medium px-3.5 py-2 rounded-full">{s}</span>
+      ))}
+    </div>
+    <svg viewBox="0 0 1440 60" fill="none" class="w-full block -mb-px"><path d="M0 60L360 20L720 40L1080 10L1440 30V60H0Z" fill="#f9fafb"/></svg>
   </section>
 
-  <!-- Sticky category tabs -->
-  <div class="sticky top-14 sm:top-16 z-30 bg-white border-b border-gray-100 shadow-sm">
+  <!-- ═══ STICKY FILTER TABS ═══ -->
+  <div class="sticky top-14 sm:top-16 z-30 bg-gray-50/95 backdrop-blur border-b border-gray-200 shadow-sm" id="services-list">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="flex overflow-x-auto gap-1 py-2" style="scrollbar-width:none; -webkit-overflow-scrolling:touch;">
-        <button data-cat="all"        class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap bg-blue-600 text-white">🗂️ All Services</button>
-        <button data-cat="freight"    class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">🚢 Freight</button>
-        <button data-cat="logistics"  class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">🏭 Logistics</button>
-        <button data-cat="valueadded" class="cat-btn flex-none px-4 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap text-gray-600 hover:bg-gray-50">⚙️ Value-Added</button>
+      <div class="flex gap-1.5 py-2.5 overflow-x-auto" style="scrollbar-width:none;-webkit-overflow-scrolling:touch;">
+        <button data-cat="all"        class="cat-btn flex-none px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all bg-[#040d1f] text-white shadow-sm">All Services</button>
+        <button data-cat="freight"    class="cat-btn flex-none px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all text-gray-500 hover:bg-white hover:shadow-sm">✈️ Freight</button>
+        <button data-cat="logistics"  class="cat-btn flex-none px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all text-gray-500 hover:bg-white hover:shadow-sm">🏭 Logistics</button>
+        <button data-cat="valueadded" class="cat-btn flex-none px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all text-gray-500 hover:bg-white hover:shadow-sm">⚙️ Value-Added</button>
       </div>
     </div>
   </div>
 
-  <!-- Services -->
-  <section id="services-list" class="bg-white py-10 sm:py-14">
-    <div class="max-w-7xl mx-auto px-4 space-y-10 sm:space-y-14">
+  <!-- ═══════════════════════════════════ -->
+  <!-- SECTION 1: FREIGHT — light gray bg  -->
+  <!-- ═══════════════════════════════════ -->
+  <section class="cat-section bg-gray-50 py-12 sm:py-16" data-section="freight">
+    <div class="max-w-7xl mx-auto px-4">
 
-      <!-- ── FREIGHT ── -->
-      <div class="cat-section" data-section="freight">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-1 h-10 bg-gradient-to-b from-blue-600 to-cyan-400 rounded-full"></div>
-          <div>
-            <p class="text-xs font-bold text-blue-600 uppercase tracking-widest">Category 01</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Freight Services</h2>
-          </div>
+      <!-- Section label banner -->
+      <div class="flex items-center gap-3 mb-8">
+        <div class="flex items-center gap-2.5 bg-sky-600 text-white px-4 py-2 rounded-2xl shadow-lg shadow-sky-200">
+          <span class="text-lg">✈️</span>
+          <span class="font-black text-sm uppercase tracking-wider">Freight</span>
+          <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">01</span>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-
-          <!-- Air Freight -->
-          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
-            <!-- Image zone: replace this div with <img src="/images/air-freight.jpg" ...> -->
-            <div class="h-40 bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center relative">
-              <span class="text-6xl">✈️</span>
-              <span class="absolute top-3 right-3 bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">Express</span>
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-500 rounded-r-full"></div>
-            </div>
-            <div class="p-5 sm:p-6">
-              <h3 class="font-display font-black text-xl text-gray-900">Air Freight</h3>
-              <p class="text-xs font-bold text-blue-600 uppercase tracking-wide mt-0.5 mb-3">Fast. Reliable. Global.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-4">When time is critical, our air freight solutions get your cargo to its destination with speed and precision — door to door.</p>
-              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
-                {["Express & standard cargo","Door-to-door delivery","Real-time tracking","Customs included","Temp-sensitive handling","Dangerous goods certified"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <span class="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                      <svg class="w-2.5 h-2.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition-all">
-                Get Air Freight Quote →
-              </a>
-            </div>
-          </div>
-
-          <!-- Sea Freight -->
-          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
-            <div class="h-40 bg-gradient-to-br from-cyan-50 to-cyan-100 flex items-center justify-center relative">
-              <span class="text-6xl">🚢</span>
-              <span class="absolute top-3 right-3 bg-cyan-100 text-cyan-700 text-xs font-bold px-2.5 py-1 rounded-full">Economy</span>
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500 rounded-r-full"></div>
-            </div>
-            <div class="p-5 sm:p-6">
-              <h3 class="font-display font-black text-xl text-gray-900">Sea Freight</h3>
-              <p class="text-xs font-bold text-cyan-600 uppercase tracking-wide mt-0.5 mb-3">Cost-Effective. Scalable.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-4">Move large volumes economically with our FCL and LCL ocean freight services. Expert port handling and documentation included.</p>
-              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
-                {["Full Container (FCL)","Less Container (LCL)","Port-to-port","Door-to-door","Import/export docs","Reefer containers"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <span class="w-4 h-4 rounded-full bg-cyan-100 flex items-center justify-center shrink-0">
-                      <svg class="w-2.5 h-2.5 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-cyan-50 text-cyan-700 hover:bg-cyan-100 active:scale-95 transition-all">
-                Get Sea Freight Quote →
-              </a>
-            </div>
-          </div>
-
-          <!-- Road Freight -->
-          <div data-category="freight" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group">
-            <div class="h-40 bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center relative">
-              <span class="text-6xl">🚛</span>
-              <span class="absolute top-3 right-3 bg-orange-100 text-orange-700 text-xs font-bold px-2.5 py-1 rounded-full">Domestic</span>
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-orange-500 rounded-r-full"></div>
-            </div>
-            <div class="p-5 sm:p-6">
-              <h3 class="font-display font-black text-xl text-gray-900">Road Freight</h3>
-              <p class="text-xs font-bold text-orange-600 uppercase tracking-wide mt-0.5 mb-3">Domestic. Dependable. On-Time.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-4">Full truckload and LTL options across Bangladesh. GPS-tracked vehicles, digital proof of delivery every time.</p>
-              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
-                {["Full Truckload (FTL)","LTL available","GPS-tracked fleet","Same-day pickup","Digital POD","Inter-district"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <span class="w-4 h-4 rounded-full bg-orange-100 flex items-center justify-center shrink-0">
-                      <svg class="w-2.5 h-2.5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-orange-50 text-orange-700 hover:bg-orange-100 active:scale-95 transition-all">
-                Get Road Freight Quote →
-              </a>
-            </div>
-          </div>
-        </div>
+        <div class="h-px flex-1 bg-gradient-to-r from-sky-200 to-transparent"></div>
       </div>
 
-      <!-- Video / Why Us banner -->
-      <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-blue-700 to-blue-900 p-7 sm:p-10 text-white">
-        <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(circle, white 1px, transparent 1px);background-size:24px 24px;"></div>
-        <div class="relative flex flex-col lg:flex-row items-center gap-6">
-          <!-- Video zone: replace this div with a YouTube embed or <video> tag -->
-          <div class="w-full lg:w-80 h-44 rounded-2xl bg-white/10 border-2 border-white/20 flex flex-col items-center justify-center gap-3 shrink-0">
-            <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <span class="text-white/60 text-xs text-center px-4">Your company video goes here</span>
-          </div>
-          <div>
-            <span class="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">Why Choose Us</span>
-            <h3 class="font-display text-2xl sm:text-3xl font-black mb-3">See How We Work</h3>
-            <p class="text-blue-100 text-sm leading-relaxed mb-5 max-w-md">We're not just a logistics company — we're your partner. Every cargo is handled with care from pickup to delivery.</p>
-            <div class="flex flex-wrap gap-3">
-              <a href="/contact" class="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-5 py-3 rounded-xl text-sm active:scale-95 transition-transform">Get Started →</a>
-              <a href="/about" class="inline-flex items-center gap-2 border border-white/30 text-white font-semibold px-5 py-3 rounded-xl text-sm active:scale-95 transition-transform">About Us</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 mb-1">Move Cargo by Air, Sea & Road</h2>
+      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-xl">International and domestic shipping solutions — tailored to your timeline and budget.</p>
 
-      <!-- ── LOGISTICS ── -->
-      <div class="cat-section" data-section="logistics">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-1 h-10 bg-gradient-to-b from-purple-600 to-green-400 rounded-full"></div>
-          <div>
-            <p class="text-xs font-bold text-purple-600 uppercase tracking-widest">Category 02</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Logistics & Delivery</h2>
-          </div>
-        </div>
-
-        <!-- Warehousing — wide card with image zone on left -->
-        <div data-category="logistics" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm mb-5">
-          <div class="grid lg:grid-cols-2">
-            <!-- Image zone: replace with <img src="/images/warehouse.jpg" class="w-full h-full object-cover"> -->
-            <div class="h-56 sm:h-64 lg:h-auto bg-gradient-to-br from-purple-50 to-purple-100 flex items-center justify-center relative">
-              <span class="text-7xl">🏭</span>
-              <span class="absolute top-4 left-4 bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">Storage</span>
-              <div class="absolute bottom-0 left-0 right-0 h-1 bg-purple-500 lg:hidden"></div>
-              <div class="absolute top-0 bottom-0 right-0 w-1 bg-purple-500 hidden lg:block"></div>
+      <!-- Mobile: full-width stacked cards -->
+      <div class="space-y-4 sm:hidden">
+        {freight.map(({ icon, title, sub, desc, tag, tagBg, accentBg, accentText, accentLight, accentBorder, btnCls, checkCls, features }) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <!-- Mobile horizontal header -->
+            <div class={`flex items-center gap-4 px-4 py-4 ${accentLight} border-b ${accentBorder}`}>
+              <div class={`w-14 h-14 ${accentBg} rounded-2xl flex items-center justify-center text-3xl shadow-lg shrink-0`}>{icon}</div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <h3 class="font-display font-black text-lg text-gray-900">{title}</h3>
+                  <span class={`text-xs font-bold px-2 py-0.5 rounded-full shrink-0 ${tagBg}`}>{tag}</span>
+                </div>
+                <p class={`text-xs font-bold uppercase tracking-wide ${accentText}`}>{sub}</p>
+              </div>
             </div>
-            <div class="p-6 sm:p-8 flex flex-col justify-center">
-              <h3 class="font-display font-black text-2xl text-gray-900">Warehousing</h3>
-              <p class="text-xs font-bold text-purple-600 uppercase tracking-wide mt-0.5 mb-3">Secure. Smart. Same-Day Ready.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-5">Our Dhaka warehousing provides secure, organized storage with real-time inventory management. Scale up or down — no long-term contracts required.</p>
-              <ul class="grid grid-cols-2 gap-2 mb-6">
-                {["Climate-controlled","Real-time inventory","Same-day dispatch","CCTV & 24/7 security","Flexible plans","Pick & pack"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <svg class="w-3.5 h-3.5 text-purple-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm active:scale-95 transition-all">
-                Enquire About Warehousing →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Last-Mile — image on right -->
-        <div data-category="logistics" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
-          <div class="grid lg:grid-cols-2">
-            <div class="p-6 sm:p-8 flex flex-col justify-center order-2 lg:order-1">
-              <h3 class="font-display font-black text-2xl text-gray-900">Last-Mile Delivery</h3>
-              <p class="text-xs font-bold text-green-600 uppercase tracking-wide mt-0.5 mb-3">Fast. Tracked. Delivered to Door.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-5">The final leg matters most. Our last-mile network ensures customers receive orders with live SMS updates and digital proof of delivery every time.</p>
-              <ul class="grid grid-cols-2 gap-2 mb-6">
-                {["Doorstep delivery","Live SMS updates","Digital POD","Re-attempt on fail","E-commerce ready","Cash on delivery"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <svg class="w-3.5 h-3.5 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-6 rounded-xl text-sm active:scale-95 transition-all">
-                Get Delivery Quote →
-              </a>
-            </div>
-            <!-- Image zone: replace with <img src="/images/last-mile.jpg" class="w-full h-full object-cover"> -->
-            <div class="h-56 sm:h-64 lg:h-auto bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center relative order-1 lg:order-2">
-              <span class="text-7xl">📦</span>
-              <span class="absolute top-4 right-4 bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">Consumer</span>
-              <div class="absolute bottom-0 left-0 right-0 h-1 bg-green-500 lg:hidden"></div>
-              <div class="absolute top-0 bottom-0 left-0 w-1 bg-green-500 hidden lg:block"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── VALUE ADDED ── -->
-      <div class="cat-section" data-section="valueadded">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-1 h-10 bg-gradient-to-b from-rose-600 to-amber-400 rounded-full"></div>
-          <div>
-            <p class="text-xs font-bold text-rose-600 uppercase tracking-widest">Category 03</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-black text-gray-900">Value-Added Services</h2>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
-
-          <!-- Customs Clearance -->
-          <div data-category="valueadded" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-            <div class="h-40 bg-gradient-to-br from-rose-50 to-rose-100 flex items-center justify-center relative">
-              <span class="text-6xl">📋</span>
-              <span class="absolute top-3 right-3 bg-rose-100 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-full">Compliance</span>
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-rose-500 rounded-r-full"></div>
-            </div>
-            <div class="p-5 sm:p-6">
-              <h3 class="font-display font-black text-xl text-gray-900">Customs Clearance</h3>
-              <p class="text-xs font-bold text-rose-600 uppercase tracking-wide mt-0.5 mb-3">Compliant. Fast. Stress-Free.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-4">Navigate complex import/export regulations with our experienced customs team. We handle all documentation and authority liaison.</p>
-              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
-                {["Import & export clearance","HS code classification","Document preparation","Authority liaison","Duty & tax advisory","Compliance consulting"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <span class="w-4 h-4 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
-                      <svg class="w-2.5 h-2.5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            <div class="p-4">
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-4">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
                     </span>
                     {f}
                   </li>
                 ))}
               </ul>
-              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-rose-50 text-rose-700 hover:bg-rose-100 active:scale-95 transition-all">
-                Enquire Now →
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-sm`}>
+                Get a Quote →
               </a>
             </div>
           </div>
+        ))}
+      </div>
 
-          <!-- Supply Chain -->
-          <div data-category="valueadded" class="service-card rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-            <div class="h-40 bg-gradient-to-br from-amber-50 to-amber-100 flex items-center justify-center relative">
-              <span class="text-6xl">🔗</span>
-              <span class="absolute top-3 right-3 bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Advisory</span>
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500 rounded-r-full"></div>
+      <!-- Desktop: 3-col grid with gradient header cards -->
+      <div class="hidden sm:grid grid-cols-2 lg:grid-cols-3 gap-5">
+        {freight.map(({ icon, title, sub, desc, tag, tagBg, headerFrom, headerTo, btnCls, checkCls, features }) => (
+          <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-100">
+            <div class={`relative h-40 bg-gradient-to-br ${headerFrom} ${headerTo} flex items-center justify-center overflow-hidden`}>
+              <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle, white 1px, transparent 1px);background-size:18px 18px;"></div>
+              <span class="text-7xl drop-shadow-xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+              <span class={`absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full ${tagBg}`}>{tag}</span>
             </div>
-            <div class="p-5 sm:p-6">
-              <h3 class="font-display font-black text-xl text-gray-900">Supply Chain Management</h3>
-              <p class="text-xs font-bold text-amber-600 uppercase tracking-wide mt-0.5 mb-3">Visibility. Control. Optimised.</p>
-              <p class="text-gray-500 text-sm leading-relaxed mb-4">Full end-to-end visibility over your supply chain. From vendor coordination to final delivery — every handover point monitored.</p>
-              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-5">
-                {["End-to-end coordination","Vendor management","Route optimization","Cost reduction","Performance reports","Dedicated manager"].map(f => (
-                  <li class="flex items-center gap-2 text-xs text-gray-700">
-                    <span class="w-4 h-4 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                      <svg class="w-2.5 h-2.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+            <div class="p-5 flex flex-col flex-1">
+              <h3 class="font-display font-black text-xl text-gray-900">{title}</h3>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-0.5 mb-3">{sub}</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-2 mb-5 flex-1">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
                     </span>
                     {f}
                   </li>
                 ))}
               </ul>
-              <a href="/contact" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-amber-50 text-amber-700 hover:bg-amber-100 active:scale-95 transition-all">
-                Learn More →
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-md`}>
+                Get a Quote →
               </a>
             </div>
           </div>
-
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Process steps -->
-  <section class="py-12 sm:py-16 bg-gray-50 border-t border-gray-100">
+  <!-- ═══ DIVIDER: gray → dark ═══ -->
+  <div class="relative bg-gray-50">
+    <svg viewBox="0 0 1440 56" fill="none" class="w-full block"><path d="M0 0L480 40L960 10L1440 50V56H0Z" fill="#040d1f"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- TRUST STRIP — dark navy bg            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="bg-[#040d1f] py-8 sm:py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {[
+          { icon:"⚡", title:"100% On-Time", desc:"Every shipment, every time", color:"text-yellow-400", bg:"bg-yellow-400/10 border-yellow-400/20" },
+          { icon:"📍", title:"Live Tracking", desc:"Real-time GPS visibility", color:"text-blue-400", bg:"bg-blue-400/10 border-blue-400/20" },
+          { icon:"🔒", title:"No Hidden Fees", desc:"Transparent pricing always", color:"text-green-400", bg:"bg-green-400/10 border-green-400/20" },
+          { icon:"📞", title:"24/7 Support", desc:"Always here when you need us", color:"text-purple-400", bg:"bg-purple-400/10 border-purple-400/20" },
+        ].map(({ icon, title, desc, color, bg }) => (
+          <div class={`rounded-2xl p-4 text-center border ${bg}`}>
+            <span class={`text-2xl block mb-2 ${color}`}>{icon}</span>
+            <p class="font-bold text-sm text-white">{title}</p>
+            <p class="text-xs text-gray-400 mt-0.5 leading-tight">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DIVIDER: dark → white ═══ -->
+  <div class="relative bg-[#040d1f]">
+    <svg viewBox="0 0 1440 56" fill="none" class="w-full block"><path d="M0 56L360 20L720 45L1080 15L1440 40V56H0Z" fill="white"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 2: LOGISTICS — white bg        -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="cat-section bg-white py-12 sm:py-16" data-section="logistics">
+    <div class="max-w-7xl mx-auto px-4">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="flex items-center gap-2.5 bg-violet-600 text-white px-4 py-2 rounded-2xl shadow-lg shadow-violet-200">
+          <span class="text-lg">🏭</span>
+          <span class="font-black text-sm uppercase tracking-wider">Logistics</span>
+          <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">02</span>
+        </div>
+        <div class="h-px flex-1 bg-gradient-to-r from-violet-200 to-transparent"></div>
+      </div>
+
+      <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 mb-1">Storage, Fulfilment & Delivery</h2>
+      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-xl">End-to-end logistics operations from our Dhaka hub — straight to your customer's door.</p>
+
+      <!-- Mobile cards -->
+      <div class="space-y-4 sm:hidden">
+        {logistics.map(({ icon, title, sub, desc, tag, tagBg, accentBg, accentText, accentLight, accentBorder, btnCls, checkCls, features }) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <div class={`flex items-center gap-4 px-4 py-4 ${accentLight} border-b ${accentBorder}`}>
+              <div class={`w-14 h-14 ${accentBg} rounded-2xl flex items-center justify-center text-3xl shadow-lg shrink-0`}>{icon}</div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <h3 class="font-display font-black text-lg text-gray-900">{title}</h3>
+                  <span class={`text-xs font-bold px-2 py-0.5 rounded-full shrink-0 ${tagBg}`}>{tag}</span>
+                </div>
+                <p class={`text-xs font-bold uppercase tracking-wide ${accentText}`}>{sub}</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-4">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-sm`}>
+                Get a Quote →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop grid -->
+      <div class="hidden sm:grid grid-cols-2 gap-6">
+        {logistics.map(({ icon, title, sub, desc, tag, tagBg, headerFrom, headerTo, btnCls, checkCls, features }) => (
+          <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-gray-100">
+            <div class={`relative h-44 bg-gradient-to-br ${headerFrom} ${headerTo} flex items-center justify-center overflow-hidden`}>
+              <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle, white 1px, transparent 1px);background-size:18px 18px;"></div>
+              <span class="text-8xl drop-shadow-xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+              <span class={`absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full ${tagBg}`}>{tag}</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-display font-black text-xl text-gray-900">{title}</h3>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-0.5 mb-3">{sub}</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-2 mb-5 flex-1">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-md`}>
+                Get a Quote →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DIVIDER: white → light blue ═══ -->
+  <div class="relative bg-white">
+    <svg viewBox="0 0 1440 56" fill="none" class="w-full block"><path d="M0 30L480 56L960 20L1440 45V56H0Z" fill="#eff6ff"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- SECTION 3: VALUE-ADDED — blue-50 bg   -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="cat-section bg-blue-50 py-12 sm:py-16" data-section="valueadded">
+    <div class="max-w-7xl mx-auto px-4">
+
+      <div class="flex items-center gap-3 mb-8">
+        <div class="flex items-center gap-2.5 bg-rose-600 text-white px-4 py-2 rounded-2xl shadow-lg shadow-rose-200">
+          <span class="text-lg">⚙️</span>
+          <span class="font-black text-sm uppercase tracking-wider">Value-Added</span>
+          <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">03</span>
+        </div>
+        <div class="h-px flex-1 bg-gradient-to-r from-rose-200 to-transparent"></div>
+      </div>
+
+      <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 mb-1">Customs, Compliance & Strategy</h2>
+      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-xl">Expert support for navigating regulations and optimising your entire supply chain.</p>
+
+      <!-- Mobile cards -->
+      <div class="space-y-4 sm:hidden">
+        {valueAdded.map(({ icon, title, sub, desc, tag, tagBg, accentBg, accentText, accentLight, accentBorder, btnCls, checkCls, features }) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+            <div class={`flex items-center gap-4 px-4 py-4 ${accentLight} border-b ${accentBorder}`}>
+              <div class={`w-14 h-14 ${accentBg} rounded-2xl flex items-center justify-center text-3xl shadow-lg shrink-0`}>{icon}</div>
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-0.5">
+                  <h3 class="font-display font-black text-lg text-gray-900">{title}</h3>
+                  <span class={`text-xs font-bold px-2 py-0.5 rounded-full shrink-0 ${tagBg}`}>{tag}</span>
+                </div>
+                <p class={`text-xs font-bold uppercase tracking-wide ${accentText}`}>{sub}</p>
+              </div>
+            </div>
+            <div class="p-4">
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-3 mb-4">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-sm`}>
+                Enquire Now →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Desktop grid -->
+      <div class="hidden sm:grid grid-cols-2 gap-6">
+        {valueAdded.map(({ icon, title, sub, desc, tag, tagBg, headerFrom, headerTo, btnCls, checkCls, features }) => (
+          <div class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col border border-blue-100">
+            <div class={`relative h-44 bg-gradient-to-br ${headerFrom} ${headerTo} flex items-center justify-center overflow-hidden`}>
+              <div class="absolute inset-0 opacity-20" style="background-image:radial-gradient(circle, white 1px, transparent 1px);background-size:18px 18px;"></div>
+              <span class="text-8xl drop-shadow-xl relative z-10 group-hover:scale-110 transition-transform duration-300">{icon}</span>
+              <span class={`absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full ${tagBg}`}>{tag}</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="font-display font-black text-xl text-gray-900">{title}</h3>
+              <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mt-0.5 mb-3">{sub}</p>
+              <p class="text-gray-500 text-sm leading-relaxed mb-4">{desc}</p>
+              <ul class="grid grid-cols-2 gap-y-2 gap-x-2 mb-5 flex-1">
+                {features.map(f => (
+                  <li class="flex items-center gap-1.5 text-xs text-gray-700">
+                    <span class={`w-4 h-4 rounded-full ${checkCls} flex items-center justify-center shrink-0`}>
+                      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" d="M5 13l4 4L19 7"/></svg>
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a href="/contact" class={`flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-sm font-bold text-white ${btnCls} active:scale-95 transition-all shadow-md`}>
+                Enquire Now →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DIVIDER: blue-50 → dark ═══ -->
+  <div class="relative bg-blue-50">
+    <svg viewBox="0 0 1440 56" fill="none" class="w-full block"><path d="M0 10L360 50L720 25L1080 55L1440 20V56H0Z" fill="#040d1f"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- PROCESS — dark navy bg                 -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="bg-[#040d1f] py-12 sm:py-16">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-10">
-        <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Our Process</span>
-        <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-2">From Booking to Delivery</h2>
-        <p class="text-gray-500 text-sm max-w-md mx-auto">Simple, transparent, and fully tracked at every step.</p>
+        <span class="inline-block bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">Our Process</span>
+        <h2 class="font-display text-3xl sm:text-4xl font-black text-white mb-2">From Booking to Delivered</h2>
+        <p class="text-gray-400 text-sm">Simple, transparent, fully tracked.</p>
       </div>
+
       <!-- Mobile: vertical timeline -->
-      <div class="lg:hidden space-y-0 max-w-sm mx-auto">
+      <div class="lg:hidden max-w-sm mx-auto">
         {[
-          { n:"01", icon:"🖥️", title:"Book Online", desc:"Submit details and get instant confirmation.", color:"bg-blue-100 text-blue-600" },
-          { n:"02", icon:"🚚", title:"We Pick Up", desc:"Collected from your location on schedule.", color:"bg-cyan-100 text-cyan-600" },
-          { n:"03", icon:"📋", title:"We Handle It", desc:"Docs, customs, routing — all sorted.", color:"bg-orange-100 text-orange-600" },
-          { n:"04", icon:"✅", title:"Delivered", desc:"Live updates. Proof of delivery every time.", color:"bg-green-100 text-green-600" },
-        ].map(({ n, icon, title, desc, color }, i, arr) => (
+          { n:"01", icon:"🖥️", title:"Book Online",   desc:"Submit details, get instant confirmation.", lineColor:"bg-blue-800" },
+          { n:"02", icon:"🚚", title:"We Pick Up",    desc:"Collected on schedule from your location.",  lineColor:"bg-blue-800" },
+          { n:"03", icon:"📋", title:"We Handle It",  desc:"Customs, docs, routing — all sorted.",       lineColor:"bg-blue-800" },
+          { n:"04", icon:"✅", title:"Delivered",     desc:"Live updates + proof of delivery.",           lineColor:"" },
+        ].map(({ n, icon, title, desc, lineColor }, i, arr) => (
           <div class="flex gap-4">
             <div class="flex flex-col items-center">
-              <div class={`w-12 h-12 rounded-2xl ${color} flex items-center justify-center text-xl font-bold shrink-0`}>{icon}</div>
-              {i < arr.length - 1 && <div class="w-0.5 flex-1 bg-gray-200 my-1 min-h-8"></div>}
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 text-white flex items-center justify-center text-2xl shrink-0 shadow-lg shadow-blue-900">{icon}</div>
+              {i < arr.length - 1 && <div class={`w-0.5 flex-1 ${lineColor} my-1 min-h-8`}></div>}
             </div>
-            <div class="pb-7">
-              <span class="text-blue-600 font-black text-xs uppercase tracking-widest">{n}</span>
-              <h3 class="font-bold text-gray-900 text-base mt-0.5 mb-1">{title}</h3>
-              <p class="text-gray-500 text-sm">{desc}</p>
+            <div class="pb-7 pt-1">
+              <span class="text-blue-400 font-black text-xs uppercase tracking-widest">{n}</span>
+              <h3 class="font-bold text-white text-base mt-0.5 mb-1">{title}</h3>
+              <p class="text-gray-400 text-sm">{desc}</p>
             </div>
           </div>
         ))}
       </div>
-      <!-- Desktop: horizontal -->
-      <div class="hidden lg:grid grid-cols-4 gap-5 relative">
-        <div class="absolute top-10 left-[calc(12.5%+1rem)] right-[calc(12.5%+1rem)] border-t-2 border-dashed border-gray-200"></div>
+
+      <!-- Desktop: 4-col -->
+      <div class="hidden lg:grid grid-cols-4 gap-4 relative mb-8">
+        <div class="absolute top-9 left-[13%] right-[13%] border-t-2 border-dashed border-blue-800 z-0"></div>
         {[
-          { n:"01", icon:"🖥️", title:"Book Online", desc:"Submit details and get instant confirmation.", bg:"bg-blue-50 border-blue-200" },
-          { n:"02", icon:"🚚", title:"We Pick Up", desc:"Collected from your location on schedule.", bg:"bg-cyan-50 border-cyan-200" },
-          { n:"03", icon:"📋", title:"We Handle It", desc:"Docs, customs, routing — all sorted.", bg:"bg-orange-50 border-orange-200" },
-          { n:"04", icon:"✅", title:"Delivered", desc:"Live updates. Proof of delivery every time.", bg:"bg-green-50 border-green-200" },
+          { n:"01", icon:"🖥️", title:"Book Online",   desc:"Submit details & get instant confirmation.", bg:"bg-blue-900/50 border-blue-700/50" },
+          { n:"02", icon:"🚚", title:"We Pick Up",    desc:"Collected from your location on schedule.",  bg:"bg-blue-900/50 border-blue-700/50" },
+          { n:"03", icon:"📋", title:"We Handle It",  desc:"Docs, customs, routing — all sorted.",       bg:"bg-blue-900/50 border-blue-700/50" },
+          { n:"04", icon:"✅", title:"Delivered",     desc:"Live updates + proof of delivery.",          bg:"bg-blue-900/50 border-blue-700/50" },
         ].map(({ n, icon, title, desc, bg }) => (
-          <div class={`relative z-10 border-2 ${bg} rounded-2xl p-5 text-center`}>
-            <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-3xl mx-auto mb-3">{icon}</div>
-            <span class="text-blue-600 font-black text-xs uppercase tracking-widest">{n}</span>
-            <h3 class="font-bold text-gray-900 text-base mt-1 mb-1.5">{title}</h3>
-            <p class="text-gray-500 text-xs leading-relaxed">{desc}</p>
+          <div class={`relative z-10 border ${bg} rounded-2xl p-5 text-center backdrop-blur`}>
+            <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-800 rounded-2xl shadow-lg flex items-center justify-center text-3xl mx-auto mb-3">{icon}</div>
+            <span class="text-blue-400 font-black text-xs uppercase tracking-widest">{n}</span>
+            <h3 class="font-bold text-white text-base mt-1 mb-1">{title}</h3>
+            <p class="text-gray-400 text-xs leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>
+
       <div class="text-center mt-8">
-        <a href="/contact" class="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-7 py-3.5 rounded-xl text-sm active:scale-95 transition-transform shadow-sm">
+        <a href="/contact" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-4 rounded-2xl text-sm active:scale-95 transition-all shadow-lg shadow-blue-900">
           Start Shipping Today →
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Trust stats -->
-  <section class="py-10 sm:py-14 bg-gradient-to-r from-blue-700 to-blue-900">
+  <!-- ═══ DIVIDER: dark → blue gradient ═══ -->
+  <div class="relative bg-[#040d1f]">
+    <svg viewBox="0 0 1440 40" fill="none" class="w-full block"><path d="M0 0L720 40L1440 0V40H0Z" fill="#1d4ed8"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- STATS BAND — blue gradient             -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 py-10 sm:py-14">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 text-center">
         {[
-          { icon:"💯", stat:"100%", label:"On-Time Rate" },
-          { icon:"📦", stat:"120+", label:"Shipments" },
-          { icon:"🌍", stat:"3",    label:"Countries" },
-          { icon:"🤝", stat:"10",   label:"Happy Clients" },
-        ].map(({ icon, stat, label }) => (
-          <div>
-            <div class="text-3xl mb-1">{icon}</div>
-            <p class="text-3xl sm:text-4xl font-black text-white">{stat}</p>
-            <p class="text-blue-200 text-xs uppercase tracking-wide mt-0.5">{label}</p>
+          ["💯","100%","On-Time Rate"],
+          ["📦","120+","Shipments"],
+          ["🌍","3","Countries"],
+          ["🤝","10","Happy Clients"],
+        ].map(([icon, stat, label]) => (
+          <div class="relative">
+            <div class="text-3xl sm:text-4xl mb-2">{icon}</div>
+            <p class="text-3xl sm:text-5xl font-black text-white leading-none">{stat}</p>
+            <p class="text-blue-200 text-xs uppercase tracking-wider mt-2 font-semibold">{label}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Final CTA -->
-  <section class="py-14 sm:py-20 bg-white mb-16 lg:mb-0">
+  <!-- ═══ DIVIDER: blue → white ═══ -->
+  <div class="relative bg-blue-700">
+    <svg viewBox="0 0 1440 48" fill="none" class="w-full block"><path d="M0 48L480 10L960 35L1440 5V48H0Z" fill="white"/></svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- CTA — white                            -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="bg-white py-14 sm:py-20 mb-16 lg:mb-0">
     <div class="max-w-2xl mx-auto px-4 text-center">
-      <span class="inline-block bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">Get Started</span>
+      <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-5">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+        Free Consultation
+      </div>
       <h2 class="font-display text-3xl sm:text-4xl font-black text-gray-900 mb-3">Not Sure Which Service?</h2>
-      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-md mx-auto">
-        Talk to our team — free of charge. We'll recommend the best solution for your shipment.
-      </p>
+      <p class="text-gray-500 text-sm sm:text-base mb-8 max-w-md mx-auto leading-relaxed">Talk to our team — free of charge. We'll find the right solution for your shipment needs.</p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/contact" class="flex items-center justify-center gap-2 bg-blue-600 text-white font-bold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform shadow-lg shadow-blue-200 text-sm">
+        <a href="/contact" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-700 to-blue-500 text-white font-bold px-8 py-4 rounded-2xl text-sm active:scale-[0.98] transition-all shadow-xl shadow-blue-200">
           Talk to an Expert →
         </a>
-        <a href="tel:+8801959395939" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 font-semibold px-8 py-4 rounded-xl active:scale-[0.98] transition-transform text-sm hover:border-blue-300 hover:text-blue-600">
+        <a href="tel:+8801959395939" class="flex items-center justify-center gap-2 border-2 border-gray-200 hover:border-blue-300 text-gray-700 font-semibold px-8 py-4 rounded-2xl text-sm active:scale-[0.98] transition-all">
           📞 01959395939
         </a>
       </div>
@@ -406,17 +589,18 @@ import Layout from "../layouts/Layout.astro";
 <script>
   const btns = document.querySelectorAll('.cat-btn');
   const sections = document.querySelectorAll('.cat-section');
+  const dividers = document.querySelectorAll('.section-divider');
 
   btns.forEach(btn => {
     btn.addEventListener('click', () => {
       const cat = (btn as HTMLElement).getAttribute('data-cat');
 
       btns.forEach(b => {
-        b.classList.remove('bg-blue-600','text-white');
-        b.classList.add('text-gray-600','hover:bg-gray-50');
+        b.classList.remove('bg-[#040d1f]','text-white','shadow-sm');
+        b.classList.add('text-gray-500');
       });
-      btn.classList.add('bg-blue-600','text-white');
-      btn.classList.remove('text-gray-600','hover:bg-gray-50');
+      btn.classList.add('bg-[#040d1f]','text-white','shadow-sm');
+      btn.classList.remove('text-gray-500');
 
       if (cat === 'all') {
         sections.forEach(s => (s as HTMLElement).style.display = '');
@@ -426,8 +610,12 @@ import Layout from "../layouts/Layout.astro";
           el.style.display = el.getAttribute('data-section') === cat ? '' : 'none';
         });
       }
-
-      document.getElementById('services-list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('services-list')?.scrollIntoView({ behavior:'smooth', block:'start' });
     });
   });
 </script>
+
+<style>
+  .bg-white\/8 { background-color: rgb(255 255 255 / 0.08); }
+  .border-white\/15 { border-color: rgb(255 255 255 / 0.15); }
+</style>
